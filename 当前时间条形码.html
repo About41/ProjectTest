@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.0/dist/JsBarcode.all.min.js"></script>
+  <style>
+    /* 设置 SVG 标签的宽度为100%并保持高度自适应 */
+    #barcode {
+      width: 100%; /* 横向铺满 */
+      height: auto; /* 高度自适应 */
+    }
+  </style>
+</head>
+<body>
+  <svg id="barcode" viewBox="0 0 300 100"></svg> <!-- 添加 viewBox 属性 -->
+
+  <script>
+    var myVar = setInterval(function() { myTimer() }, 1000);
+    
+    function myTimer() {
+      const now = new Date();
+      const year = now.getFullYear();
+      const month = ('0' + (now.getMonth() + 1)).slice(-2);
+      const day = ('0' + now.getDate()).slice(-2);
+      const hours = ('0' + now.getHours()).slice(-2);
+      const minutes = ('0' + now.getMinutes()).slice(-2);
+      const seconds = ('0' + now.getSeconds()).slice(-2);
+
+      const formattedTime = year + month + day + hours + minutes + seconds;
+
+      JsBarcode("#barcode", formattedTime);
+    }
+  </script>
+
+</body>
+</html>
